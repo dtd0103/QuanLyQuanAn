@@ -1,4 +1,4 @@
-﻿namespace QuanLyQuanCaPhe
+﻿namespace QuanLyQuanAn
 {
     partial class fAdmin
     {
