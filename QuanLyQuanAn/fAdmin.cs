@@ -1,7 +1,9 @@
-﻿using System;
+﻿using QuanLyQuanAn.DAO;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.SqlClient;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -15,7 +17,29 @@ namespace QuanLyQuanAn
         public fAdmin()
         {
             InitializeComponent();
+            //LoadAccountList();
+            //LoadFoodList();
         }
+
+        //void LoadFoodList()
+        //{
+        //    string query = "SELECT * FROM FOOD";
+
+        //    DataProvider provider = new DataProvider();
+
+        //    dtgvFood.DataSource = DataProvider.Instance.ExecuteQuery(query);
+
+        //}
+
+        //void LoadAccountList ()
+        //{
+        //    string query = "EXEC dbo.USP_GetAccountByUserName @userName";
+
+        //    DataProvider provider = new DataProvider();
+
+        //    dtgvAcccount.DataSource = DataProvider.Instance.ExecuteQuery(query, new object[] {"staff"});
+
+        //}
 
         private void dateTimePicker1_ValueChanged(object sender, EventArgs e)
         {
@@ -43,6 +67,11 @@ namespace QuanLyQuanAn
         }
 
         private void label11_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void fAdmin_Load(object sender, EventArgs e)
         {
 
         }

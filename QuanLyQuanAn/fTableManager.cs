@@ -1,4 +1,5 @@
 ﻿using QuanLyQuanAn;
+using QuanLyQuanAn.DTO;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -13,9 +14,19 @@ namespace QuanLyQuanAn
 {
     public partial class fTableManager: Form
     {
-        public fTableManager()
+        private Account loginAccount;
+        public Account LoginAccount { get => loginAccount; set { loginAccount = value; ChangeAccount(loginAccount.Type); } }
+
+        public fTableManager(Account acc)
         {
             InitializeComponent();
+            this.LoginAccount = acc;
+        }
+
+        void ChangeAccount(int type)
+        {
+            adminToolStripMenuItem.Enabled = type == 1;
+            thôngTinTàiKhoảnToolStripMenuItem.Text += " (" + LoginAccount.Name + ")";
         }
 
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
@@ -46,8 +57,15 @@ namespace QuanLyQuanAn
 
         private void thôngTinCáNhânToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            fAccountProfile f = new fAccountProfile();
+            fAccountProfile f = new fAccountProfile(LoginAccount);
+            f.UpdateAccountEvent += f_UpdateAccountEvent;
             f.ShowDialog();
         }
+
+        private void f_UpdateAccountEvent(object sender, AccountEvent e)
+        {
+            thôngTinTàiKhoảnToolStripMenuItem.Text = "Thông tin tài khoản (" + e.Acc.Name + ")";
+        }
+
     }
 }
