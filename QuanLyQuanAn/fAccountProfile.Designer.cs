@@ -35,11 +35,11 @@
             this.txbUserDisplayName = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.panel3 = new System.Windows.Forms.Panel();
-            this.txbUserPassword = new System.Windows.Forms.TextBox();
-            this.label3 = new System.Windows.Forms.Label();
             this.panel4 = new System.Windows.Forms.Panel();
             this.textBox3 = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
+            this.txbUserPassword = new System.Windows.Forms.TextBox();
+            this.label3 = new System.Windows.Forms.Label();
             this.panel5 = new System.Windows.Forms.Panel();
             this.txbNewPassword = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
@@ -69,6 +69,7 @@
             // 
             this.txbUserName.Location = new System.Drawing.Point(309, 37);
             this.txbUserName.Name = "txbUserName";
+            this.txbUserName.ReadOnly = true;
             this.txbUserName.Size = new System.Drawing.Size(438, 31);
             this.txbUserName.TabIndex = 1;
             // 
@@ -102,7 +103,7 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(22, 30);
+            this.label2.Location = new System.Drawing.Point(22, 37);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(180, 39);
             this.label2.TabIndex = 0;
@@ -117,23 +118,6 @@
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(776, 96);
             this.panel3.TabIndex = 3;
-            // 
-            // txbUserPassword
-            // 
-            this.txbUserPassword.Location = new System.Drawing.Point(309, 37);
-            this.txbUserPassword.Name = "txbUserPassword";
-            this.txbUserPassword.Size = new System.Drawing.Size(438, 31);
-            this.txbUserPassword.TabIndex = 1;
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(22, 30);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(153, 39);
-            this.label3.TabIndex = 0;
-            this.label3.Text = "Mật khẩu:";
             // 
             // panel4
             // 
@@ -160,6 +144,23 @@
             this.label4.Size = new System.Drawing.Size(219, 39);
             this.label4.TabIndex = 0;
             this.label4.Text = "Tên đăng nhập:";
+            // 
+            // txbUserPassword
+            // 
+            this.txbUserPassword.Location = new System.Drawing.Point(309, 37);
+            this.txbUserPassword.Name = "txbUserPassword";
+            this.txbUserPassword.Size = new System.Drawing.Size(438, 31);
+            this.txbUserPassword.TabIndex = 1;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.Location = new System.Drawing.Point(22, 30);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(153, 39);
+            this.label3.TabIndex = 0;
+            this.label3.Text = "Mật khẩu:";
             // 
             // panel5
             // 
@@ -246,7 +247,8 @@
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.panel2);
             this.Name = "fAccountProfile";
-            this.Text = "fAccountProfile";
+            this.Text = "Thông tin cá nhân";
+            this.Load += new System.EventHandler(this.Profile_Load);
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
             this.panel1.ResumeLayout(false);
