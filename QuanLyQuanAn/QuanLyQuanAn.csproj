@@ -46,6 +46,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+
     <Compile Include="DAO\BillDAO.cs" />
     <Compile Include="DAO\BillInfoDAO.cs" />
     <Compile Include="DAO\CategoryDAO.cs" />
@@ -59,6 +60,10 @@
     <Compile Include="DTO\Food.cs" />
     <Compile Include="DTO\Menu.cs" />
     <Compile Include="DTO\Table.cs" />
+
+    <Compile Include="DAO\AccountDAO.cs" />
+    <Compile Include="DTO\Account.cs" />
+
     <Compile Include="fAccountProfile.cs">
       <SubType>Form</SubType>
     </Compile>

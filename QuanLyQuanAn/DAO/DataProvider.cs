@@ -12,45 +12,34 @@ namespace QuanLyQuanAn.DAO
     {
         private static DataProvider instance;
 
-        public static DataProvider Instance {
+        public static DataProvider Instance { 
             get { if (instance == null) instance = new DataProvider(); return DataProvider.instance; }
-            private set { DataProvider instance = value; }
+            private set { DataProvider.instance = value; }
         }
 
-        private DataProvider() { }
+        private String connectionSTR = "Data Source=DESKTOP-AICIKSD;Initial Catalog=qlqa;Integrated Security=True";
+        
 
-        private string connectionSTR = "Data Source=DESKTOP-2TIKS5H;Initial Catalog = qlqa; Integrated Security = True";
-
-        public DataTable ExecuteQuery(string query, object[] parameter = null ) {
+        public DataTable ExecuteQuery(String query, object[] parameters = null)
+        {
             DataTable data = new DataTable();
-            using (SqlConnection connection = new SqlConnection(connectionSTR)) {
-                
-                connection.Open();
+            using (SqlConnection connection = new SqlConnection(connectionSTR)) { 
 
-                SqlCommand command = new SqlCommand(query, connection);
+            SqlCommand command = new SqlCommand(query, connection);
 
-                if(parameter != null)
+            if (parameters != null)
                 {
                     string[] listPara = query.Split(' ');
                     int i = 0;
-                    foreach (string item in listPara) {
-                        if (item.Contains('@')){
-                            command.Parameters.AddWithValue(item, parameter[i]);
+                    foreach(string item in listPara)
+                    {
+                        if(item.Contains('@'))
+                        {
+                            command.Parameters.AddWithValue(item, parameters[i]);
                             i++;
                         }
                     }
                 }
-
-                SqlDataAdapter adapter = new SqlDataAdapter(command);
-
-                adapter.Fill(data);
-                connection.Close();
-            } ;
-
-
-            return data;
-
-        }
 
         public int ExecuteNonQuery(string query, object[] parameter = null)
         {
@@ -64,44 +53,24 @@ namespace QuanLyQuanAn.DAO
                 SqlCommand command = new SqlCommand(query, connection);
 
                 if (parameter != null)
-                {
-                    string[] listPara = query.Split(' ');
-                    int i = 0;
-                    foreach (string item in listPara)
-                    {
-                        if (item.Contains('@'))
-                        {
-                            command.Parameters.AddWithValue(item, parameter[i]);
-                            i++;
-                        }
-                    }
-                }
+            SqlDataAdapter adapter = new SqlDataAdapter(command);
 
-                data = command.ExecuteNonQuery();
+            adapter.Fill(data);
 
-                //SqlDataAdapter adapter = new SqlDataAdapter(command);
-
-                //adapter.Fill(data);
-                connection.Close();
-            };
-
+            connection.Close(); }
 
             return data;
-
         }
 
-        public object ExecuteScalar(string query, object[] parameter = null)
+        public int ExecuteNonQuery(String query, object[] parameters = null)
         {
-            object data = 0;
-            //DataTable data = new DataTable();
+            int data = 0;
             using (SqlConnection connection = new SqlConnection(connectionSTR))
             {
 
-                connection.Open();
-
                 SqlCommand command = new SqlCommand(query, connection);
 
-                if (parameter != null)
+                if (parameters != null)
                 {
                     string[] listPara = query.Split(' ');
                     int i = 0;
@@ -109,24 +78,50 @@ namespace QuanLyQuanAn.DAO
                     {
                         if (item.Contains('@'))
                         {
-                            command.Parameters.AddWithValue(item, parameter[i]);
+                            command.Parameters.AddWithValue(item, parameters[i]);
+
                             i++;
                         }
                     }
                 }
-
-                //data = command.ExecuteNonQuery();
-                data = command.ExecuteScalar();
-
-                //SqlDataAdapter adapter = new SqlDataAdapter(command);
-
-                //adapter.Fill(data);
+                connection.Open();
+                data = command.ExecuteNonQuery();
+                
                 connection.Close();
-            };
-
+            }
 
             return data;
+        }
 
+        public object ExecuteScalar(String query, object[] parameters = null)
+        {
+            object data = 0;
+            using (SqlConnection connection = new SqlConnection(connectionSTR))
+            {
+
+                SqlCommand command = new SqlCommand(query, connection);
+
+                if (parameters != null)
+                {
+                    string[] listPara = query.Split(' ');
+                    int i = 0;
+                    foreach (string item in listPara)
+                    {
+                        if (item.Contains('@'))
+                        {
+
+                            command.Parameters.AddWithValue(item, parameters[i]);
+
+                            i++;
+                        }
+                    }
+                }
+                data = command.ExecuteScalar();
+
+                connection.Close();
+            }
+
+            return data;
         }
     }
 }

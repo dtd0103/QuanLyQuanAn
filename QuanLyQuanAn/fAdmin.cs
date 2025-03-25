@@ -18,36 +18,29 @@ namespace QuanLyQuanAn
         {
             InitializeComponent();
 
-            loadAccountList();
+            //LoadAccountList();
+            //LoadFoodList();
         }
 
-        void loadAccountList()
-        {
-            /*
-            string connectionSTR = "Data Source=DESKTOP-2TIKS5H;Initial Catalog=qlqa;Integrated Security=True";
-            SqlConnection connection = new SqlConnection(connectionSTR);
+        //void LoadFoodList()
+        //{
+        //    string query = "SELECT * FROM FOOD";
 
-            string query = "Select * from Account";
+        //    DataProvider provider = new DataProvider();
 
-            connection.Open();
+        //    dtgvFood.DataSource = DataProvider.Instance.ExecuteQuery(query);
 
-            SqlCommand command = new SqlCommand(query, connection);
-            DataTable data = new DataTable();
+        //}
 
-            SqlDataAdapter adapter = new SqlDataAdapter(command);
-            
-            adapter.Fill(data);
-            connection.Close();
-            
-            dtgvAccount.DataSource = data;
-            */
-            string query = "Select * from Account";
+        //void LoadAccountList ()
+        //{
+        //    string query = "EXEC dbo.USP_GetAccountByUserName @userName";
 
-           // DataProvider provider = new DataProvider();
+        //    DataProvider provider = new DataProvider();
 
-            dtgvAccount.DataSource = DataProvider.Instance.ExecuteQuery(query);
+        //    dtgvAcccount.DataSource = DataProvider.Instance.ExecuteQuery(query, new object[] {"staff"});
 
-        }
+        //}
 
         private void dateTimePicker1_ValueChanged(object sender, EventArgs e)
         {
@@ -75,6 +68,11 @@ namespace QuanLyQuanAn
         }
 
         private void label11_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void fAdmin_Load(object sender, EventArgs e)
         {
 
         }
