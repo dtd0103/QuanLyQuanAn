@@ -1,14 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Data;
 using System.Data.SqlClient;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace QuanLyQuanAn.DAO
 {
-    class DataProvider
+    public class DataProvider
     {
         private static DataProvider instance;
 
@@ -41,6 +41,18 @@ namespace QuanLyQuanAn.DAO
                     }
                 }
 
+        public int ExecuteNonQuery(string query, object[] parameter = null)
+        {
+            int data = 0;
+            //DataTable data = new DataTable();
+            using (SqlConnection connection = new SqlConnection(connectionSTR))
+            {
+
+                connection.Open();
+
+                SqlCommand command = new SqlCommand(query, connection);
+
+                if (parameter != null)
             SqlDataAdapter adapter = new SqlDataAdapter(command);
 
             adapter.Fill(data);
@@ -67,11 +79,11 @@ namespace QuanLyQuanAn.DAO
                         if (item.Contains('@'))
                         {
                             command.Parameters.AddWithValue(item, parameters[i]);
+
                             i++;
                         }
                     }
                 }
-
                 connection.Open();
                 data = command.ExecuteNonQuery();
                 
@@ -97,12 +109,13 @@ namespace QuanLyQuanAn.DAO
                     {
                         if (item.Contains('@'))
                         {
+
                             command.Parameters.AddWithValue(item, parameters[i]);
+
                             i++;
                         }
                     }
                 }
-
                 data = command.ExecuteScalar();
 
                 connection.Close();

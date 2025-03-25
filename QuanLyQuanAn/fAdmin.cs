@@ -17,6 +17,7 @@ namespace QuanLyQuanAn
         public fAdmin()
         {
             InitializeComponent();
+
             //LoadAccountList();
             //LoadFoodList();
         }
